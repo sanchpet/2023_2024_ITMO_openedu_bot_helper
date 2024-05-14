@@ -6,7 +6,7 @@ theme: /
         q!: $regex</start>
         a: Начнём.
 
-    state: Hello
+    state: /hello
         intent!: /привет
         a: Привет привет
 
@@ -14,10 +14,28 @@ theme: /
         intent!: /пока
         a: Пока пока
 
-    state: NoMatch
+    state: /NoMatch
         event!: noMatch
         a: Я не понял. Вы сказали: {{$request.query}}
 
     state: Match
         event!: match
         a: {{$context.intent.answer}}
+
+        
+theme: /WeatherForecast
+    
+    state: /weather
+        q!: * ~прогноз * ~погода *
+        q!: * ~погода *
+        q!: * ~прогноз *
+        a: Окей, вот прогноз погоды.
+    
+theme: /Banking
+    
+    state: /currency
+        q!: * ~прогноз * ~валюта *
+        q!: * ~курс * ~валюта *
+        q!:*~валюта *
+        q!: * ~курс *
+        a: Окей, вот курс валюты.
